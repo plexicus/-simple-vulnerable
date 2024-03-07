@@ -1,4 +1,5 @@
-<?php
+
+        <?php
 // Conexión a la base de datos (modifica con tus propios parámetros de conexión)
 $servername = "localhost";
 $username = "tu_usuario";
@@ -33,9 +34,11 @@ if(isset($_GET['id'])) {
 // El siguiente código es vulnerable a XSS ya que imprime directamente en el HTML el contenido de una variable que puede ser manipulada por el usuario sin ninguna sanitización.
 if(isset($_GET['mensaje'])) {
     $mensaje = $_GET['mensaje']; // Input del usuario susceptible a XSS
+if(isset($_GET['mensaje'])) {
+    $mensaje = $_GET['mensaje']; // Input del usuario susceptible a XSS
     echo "<div>$mensaje</div>"; // Vulnerable a XSS
 }
-
-// Cerrar conexión
 $conn->close();
 ?>
+
+        

@@ -1,6 +1,6 @@
 <?php
 // Conexión a la base de datos (modifica con tus propios parámetros de conexión)
-$servername = "localhost";
+$servername = getenv('DB_SERVERNAME') ?: "localhost";
 $username = "tu_usuario";
 $password = "tu_contraseña";
 $dbname = "tu_base_de_datos";

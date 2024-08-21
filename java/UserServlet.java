@@ -17,7 +17,9 @@ public class UserServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
 
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydatabase", "user", "password");
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM users WHERE id = ?");
+            stmt.setString(1, userId);
+            ResultSet rs = stmt.executeQuery();
             Statement stmt = conn.createStatement();
 
             // Vulnerability: Concatenation of user input in SQL query

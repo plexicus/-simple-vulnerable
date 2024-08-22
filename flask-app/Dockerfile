@@ -1,4 +1,4 @@
-FROM python
+FROM python:3.9
 
 # Install vulnerable versions of libraries
 RUN pip install Django==1.8.0 \

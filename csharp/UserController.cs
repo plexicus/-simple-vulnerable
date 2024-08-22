@@ -15,7 +15,8 @@ public class UserController : Controller
 
             // Vulnerability: Direct concatenation of user input in SQL query
             string query = "SELECT * FROM Users WHERE Id = " + userId;
-            SqlCommand command = new SqlCommand(query, connection);
+            string query = "SELECT * FROM Users WHERE Id = @userId";
+            command.Parameters.AddWithValue("@userId", userId);
 
             SqlDataReader reader = command.ExecuteReader();
             if (reader.Read())

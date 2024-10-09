@@ -21,16 +21,18 @@ public class UserServlet extends HttpServlet {
             Statement stmt = conn.createStatement();
 
             // Vulnerability: Concatenation of user input in SQL query
-            String query = "SELECT * FROM users WHERE id = " + userId;
-            ResultSet rs = stmt.executeQuery(query);
+            String query = "SELECT * FROM users WHERE id = ?";
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, userId);
+            ResultSet rs = pstmt.executeQuery();
 
             while (rs.next()) {
                 out.println("User ID: " + rs.getInt("id"));
-                out.println("User Name: " + rs.getString("name"));
+                out.println("User Name: " + org.apache.commons.text.StringEscapeUtils.escapeHtml4(rs.getString("name")));
             }
 
             rs.close();
-            stmt.close();
+            pstmt.close();
             conn.close();
         } catch (Exception e) {
             e.printStackTrace();

@@ -6,7 +6,7 @@ GEM
     actionview (4.2.7)
     ...
     rack (1.6.0)
-    nokogiri (1.6.7)
+    nokogiri (1.6.8)
     devise (3.5.2)
 
 PLATFORMS
@@ -14,8 +14,7 @@ PLATFORMS
 
 DEPENDENCIES
   rails (= 4.2.7)
-  nokogiri (= 1.6.7)
+  nokogiri (= 1.6.8)
   rack (= 1.6.0)
   devise (= 3.5.2)
   bootstrap-sass (= 3.3.6)
-

@@ -16,13 +16,16 @@ public class UserServlet extends HttpServlet {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
 
+
+
+
         try {
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydatabase", "user", "password");
-            Statement stmt = conn.createStatement();
-
-            // Vulnerability: Concatenation of user input in SQL query
-            String query = "SELECT * FROM users WHERE id = " + userId;
-            ResultSet rs = stmt.executeQuery(query);
+            // Use PreparedStatement to prevent SQL Injection
+            String query = "SELECT * FROM users WHERE id = ?";
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            pstmt.setString(1, userId);
+            ResultSet rs = pstmt.executeQuery();
 
             while (rs.next()) {
                 out.println("User ID: " + rs.getInt("id"));
@@ -30,10 +33,11 @@ public class UserServlet extends HttpServlet {
             }
 
             rs.close();
-            stmt.close();
+            pstmt.close();
             conn.close();
         } catch (Exception e) {
             e.printStackTrace();
+
             out.println("Error: " + e.getMessage());
         } finally {
             out.close();

@@ -5,6 +5,7 @@ using System.Web.Mvc;
 public class UserController : Controller
 {
     [HttpPost]
+    [ValidateAntiForgeryToken]
     public ActionResult GetUser(string userId)
     {
         string connectionString = "Data Source=localhost;Initial Catalog=mydatabase;User ID=user;Password=password";
@@ -16,7 +17,6 @@ public class UserController : Controller
             // Vulnerability: Direct concatenation of user input in SQL query
             string query = "SELECT * FROM Users WHERE Id = " + userId;
             SqlCommand command = new SqlCommand(query, connection);
-
             SqlDataReader reader = command.ExecuteReader();
             if (reader.Read())
             {

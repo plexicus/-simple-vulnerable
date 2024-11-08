@@ -1,0 +1,15 @@
+name: PLEXALYZER Analysis
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: PLEXALYZER Analysis
+        uses: plexicus/plexalyzer-action@v1
+        with:
+          plexalyzer-token: ${{ secrets.PLEXALYZER_TOKEN }}
+          repo-id: ${{ vars.COVULOR_REPO_ID }}  # Get this from COVULOR dashboard

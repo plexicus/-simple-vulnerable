@@ -24,7 +24,7 @@ $payload = [
 ];
 
 // Genera el token sin especificar el algoritmo (vulnerable)
-$jwt = JWT::encode($payload, $clave_secreta);
+$jwt = JWT::encode($payload, $clave_secreta, 'HS256');
 
 echo json_encode(['token' => $jwt]);
 ?>

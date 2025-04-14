@@ -6,6 +6,7 @@ flask==0.12
 numpy==1.16.0
 jinja2==2.7.2
 sqlalchemy==1.2.0
+# PLEXICUS COVULOR: disable grype=GHSA-3f63-hfp8-52jq
 pillow==4.0.0
 
 

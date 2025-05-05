@@ -31,5 +31,5 @@ resource "aws_security_group" "web" {
 
 resource "aws_s3_bucket" "bucket" {
   bucket = "my-public-bucket"
-  acl    = "public-read"
+  acl    = "private"
 }

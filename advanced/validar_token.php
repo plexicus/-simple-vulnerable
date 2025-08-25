@@ -19,7 +19,7 @@ try {
     // Decodifica el token sin especificar la clave de manera segura (vulnerable)
     $decoded = JWT::decode($token, $clave_secreta, ['HS256']);
 
-    echo json_encode(['datos' => $decoded->data]);
+    echo json_encode(['datos' => htmlentities($decoded->data, ENT_QUOTES, 'UTF-8')]);
 } catch (Exception $e) {
     echo json_encode(['error' => 'Token inválido: ' . $e->getMessage()]);
 }
